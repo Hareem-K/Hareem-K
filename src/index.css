@@ -30,19 +30,16 @@ a {
   background: transparent;
   height: 75px;
   width: 55px;
-  border: none;
-  color: #696969;
+  position:fixed;
+  top:0;
+  left:0;
   text-align: center;
-  display: inline-block;
+  border: none;
   font-size: 30px;
   cursor: pointer;
-  position:relative;
-  top:-40px;
-  right: 500px;
-  margin: -20px;
 }
 
 .button:hover {
   background-color: rosybrown;
-  transition: 0.7s;
+  transition: 0.3s;
 }
