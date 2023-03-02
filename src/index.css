@@ -15,6 +15,10 @@ a {
   text-decoration: none;
 }
 
+* {
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
 .header {
   position:fixed;
   top:0;
@@ -42,4 +46,61 @@ a {
 .button:hover {
   background-color: rosybrown;
   transition: 0.3s;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-right: 1px Solid #D3D3D3;
+  width: 25%;
+  height: 800px;
+  margin-top: 75px;
+}
+
+.sidebar button {
+  background-color: transparent;
+  border: none;
+  font-size: x-large;
+  cursor: pointer;
+  margin-top: 1px;
+  margin-left: 225px;
+
+}
+
+.sidebar button:hover {
+  background-color: rosybrown;
+  transition: 0.3s;
+}
+
+.subheader {
+  display: flex;
+  padding: 15px;
+  border-bottom: 4px Solid rosybrown;
+}
+
+.sidebarnote {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.sidebarnote:hover {
+  background-color: rosybrown;
+}
+
+.notetitle {
+  font-size: large;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.sidebarnote small {
+  font-size: 10px;
+  color: grey;
+}
+
+.preview {
+  font-size: 14px;
+  margin-top: 5px;
 }
