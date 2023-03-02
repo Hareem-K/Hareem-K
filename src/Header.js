@@ -1,3 +1,6 @@
+import toggleFunctions from "./ToggleSidebar";
+
+
 function Header() {
     return (
         <div className="header"> 
@@ -5,7 +8,7 @@ function Header() {
             <p>Like Notion, but worse.</p>
             
             <button className="button"
-                type="button">&#9776;
+                type="button" onClick={toggleFunctions}>&#9776;
             </button>  
         </div>
     )

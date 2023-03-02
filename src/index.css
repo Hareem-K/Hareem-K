@@ -19,6 +19,13 @@ a {
   font-family:Verdana, Geneva, Tahoma, sans-serif
 }
 
+/*remove scrollbars*/
+body {
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+/*header designing*/
 .header {
   position:fixed;
   top:0;
@@ -28,8 +35,10 @@ a {
   text-align: center;
   border-bottom: 1px Solid #D3D3D3;
   border-top: 4px Solid rosybrown;
+  background-color: white;
 }
 
+/*toggle button in header*/
 .button {
   background: transparent;
   height: 75px;
@@ -43,12 +52,14 @@ a {
   cursor: pointer;
 }
 
+/*change hover settings for header toggle button*/
 .button:hover {
   background-color: rosybrown;
   color: white;
   transition: 0.3s;
 }
 
+/*sidebar designing*/
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -59,39 +70,49 @@ a {
   margin-top: 75px;
 }
 
+/*adds space between 'Notes' and '+' in the sidebar header*/
+.spacer {
+  flex: 1;
+}
+
+/*+ button designing*/
 .sidebar button {
   background-color: transparent;
   border: none;
   font-size: x-large;
   cursor: pointer;
   margin-top: 1px;
-  margin-left: 225px;
 
 }
 
+/*+ button hover settings*/
 .sidebar button:hover {
   background-color: rosybrown;
   color: white;
   transition: 0.3s;
 }
 
+/*sidebar header*/
 .subheader {
   display: flex;
   padding: 15px;
   border-bottom: 4px Solid rosybrown;
 }
 
+/*each note in the sidebar*/
 .sidebarnote {
   cursor: pointer;
   padding: 10px;
 }
 
+/*hover settings for each note*/
 .sidebarnote:hover {
   background-color: rosybrown;
   color: white;
   transition: 0.3s;
 }
 
+/*title of each note*/
 .notetitle {
   font-size: large;
   display: flex;
@@ -99,11 +120,13 @@ a {
 
 }
 
+/*last modified text*/
 .sidebarnote small {
   font-size: 10px;
   color: grey;
 }
 
+/*preview of the text in each note in the sidebar*/
 .preview {
   font-size: 14px;
   margin-top: 5px;

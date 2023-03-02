@@ -1,8 +1,9 @@
 function Sidebar() {
     return (
-        <div className="sidebar">
+        <div className="sidebar" id="sidebar">
             <div className="subheader"> 
                 <h2>Notes</h2>
+                <div className="spacer" />
                 <button> &#x2b; </button>
 
             </div>
