@@ -1,6 +1,14 @@
+import React, { useState } from "react";
+
 function Sidebar() {
+    const[isOpen, setIsOpen] = useState(false);
+    const toggle = () => setIsOpen (!isOpen);
     return (
-        <div className="sidebar" id="sidebar">
+        
+        <div style={{width: isOpen ? "300px" : "10px"}}className="sidebar">
+            <button className="button"
+                type="button" onClick={toggle}>&#9776;
+            </button> 
             <div className="subheader"> 
                 <h2>Notes</h2>
                 <div className="spacer" />
