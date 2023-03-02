@@ -103,6 +103,7 @@ body {
 .sidebarnote {
   cursor: pointer;
   padding: 10px;
+  border-bottom: 1px Solid #D3D3D3;
 }
 
 /*hover settings for each note*/
@@ -130,4 +131,12 @@ body {
 .preview {
   font-size: 14px;
   margin-top: 5px;
+}
+
+.Note {
+  margin-top: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+ 
 }

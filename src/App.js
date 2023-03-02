@@ -1,6 +1,7 @@
 
 import Header from "./Header";
 import Sidebar from "./Sidebar";
+import Note from "./Note"
 
 function App() {
 
@@ -8,7 +9,8 @@ function App() {
     <>
     <Header />
     <Sidebar />
-    
+    <Note />
+
     </>
   )
 }
