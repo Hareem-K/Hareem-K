@@ -45,6 +45,7 @@ a {
 
 .button:hover {
   background-color: rosybrown;
+  color: white;
   transition: 0.3s;
 }
 
@@ -70,6 +71,7 @@ a {
 
 .sidebar button:hover {
   background-color: rosybrown;
+  color: white;
   transition: 0.3s;
 }
 
@@ -86,6 +88,8 @@ a {
 
 .sidebarnote:hover {
   background-color: rosybrown;
+  color: white;
+  transition: 0.3s;
 }
 
 .notetitle {
