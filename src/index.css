@@ -142,7 +142,7 @@ body {
   height: 100%;
   width: calc(100%-350px);
   transition: all 0.3s;
-  margin: 20px;
+  margin: 20px 0 20px 350px;
 
 }
 
