@@ -67,8 +67,8 @@ body {
   height: 100%;
   border-right: 1px Solid #D3D3D3;
   width: 350px;
-  height: 800px;
-  margin-top: 5px;
+  height: 700px;
+  margin-top: 55px;
   left: -350px;
   z-index: 1;
   transition: all 0.3s;
@@ -102,6 +102,7 @@ body {
   display: flex;
   padding: 15px;
   border-bottom: 4px Solid rosybrown;
+  height: 40px;
 }
 
 /*each note in the sidebar*/
@@ -143,18 +144,12 @@ body {
   width: calc(100%-350px);
   transition: all 0.3s;
   margin: 20px 0 20px 350px;
+  margin: 20px;
 
 }
 
 .Note strong {
   font-size: 50px;
-}
-
-.subHead {
-  margin-top: 70px;
-  height: 80px;
-  width: 100%;
-  border-bottom: 1px Solid #D3D3D3;
 }
 
 .fonts {
@@ -167,28 +162,120 @@ body {
   height: 800px;
 }
 
-.subHead button {
-  float: right;
-  margin-top: 64px;
-}
-
-.button1 {
+.delete {
   background: transparent;
-  height: 76px;
-  width: 100px;
-  border: none;
+  background-color: transparent;
+  height: 70px;
+  position:fixed;
+  right:0;
   text-align: center;
-  display: inline-block;
-  font-size: 20px;
-  cursor: pointer;
-  position:relative;
-  top:-60px;
-  right: 0;
+  border: none;
   font-size: 15px;
+  cursor: pointer;
+  margin-top: -71px;
+  width: 100px;
 }
 
-.button1:hover {
+.save {
+  background: transparent;
+  background-color: transparent;
+  height: 70px;
+  position:fixed;
+  right:0;
+  text-align: center;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: -71px;
+  margin-right: 100px;
+  width: 100px;
+
+}
+
+.delete:hover {
   background-color: rosybrown;
   color: white;
   transition: 0.3s;
+}
+
+.save:hover {
+  background-color: rosybrown;
+  color: white;
+  transition: 0.3s;
+}
+
+/*note title and note textboxes*/
+.app-main-note-edit {
+  padding: 25px;
+  right: 0;
+  width: 100%;
+}
+
+.app-main-note-edit input,
+textarea {
+  display: block;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  width: 100%;
+  height: calc(50vh - 130px);
+  padding: 10px;
+  resize: none;
+}
+.app-main-note-edit input {
+  height: 60px;
+  font-size: 2rem;
+}
+
+.sidebarnote.active,
+.sidebarnote.active small {
+  background: rosybrown;
+  color: white;
+}
+
+#body {
+  margin-top: 0px;
+  height: 250px;
+}
+
+/*"select a note, or create one" note*/
+.no-active-note {
+  width: 70%;
+  margin-left: 20%;
+  line-height: 100vh;
+  text-align: center;
+  font-size: 2rem;
+  color: #999;
+}
+
+.date {
+  margin-top: -20px;
+  margin-left: 10px;
+  color: #999;
+}
+
+.App .editor {
+  width: 900px;
+  margin-left: 20%;
+  margin-top: 50px;
+}
+
+/* Preview */
+.app-main-note-preview {
+  border-top: 1px solid #ddd;
+  overflow-y: scroll;
+  margin-left: 20px;
+  height: 250px;
+  width: 100%;
+}
+
+.preview-title {
+  padding: 25px 25px 0 25px;
+  margin:20;
+  border-bottom: 1px Solid #999;
+  height: 55px;
+}
+
+.markdown-preview {
+  padding: 0 25px 25px 25px;
+  font-size: 1rem;
 }
