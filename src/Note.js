@@ -57,7 +57,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
                     {editing ? (
                         <ReactQuill style={{height: 525, marginLeft: -25}} className="no-outline" id="body" placeholder="Your Note Here" value={noteContent} onChange={setNoteContent} />
                     ) : (
-                        <div className="markdown-preview">
+                        <div className="markdown-preview" style={{marginLeft:-11}}>
                             {activeNote.body}
                         </div>
                     )}
