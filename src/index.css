@@ -148,10 +148,6 @@ body {
 
 }
 
-.Note strong {
-  font-size: 50px;
-}
-
 .fonts {
   height: 40px;
   border-bottom: 1px Solid #D3D3D3;
@@ -279,6 +275,5 @@ textarea {
   text-align: center;
   font-size: 20px;
 }
-
 
 
