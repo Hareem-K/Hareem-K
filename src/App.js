@@ -57,7 +57,7 @@ function App() {
     <>
     <Header />
     <Sidebar isOpen={isOpen} toggle={toggle} notes={notes} onAddNote={onAddNote} activeNote={activeNote} setAvtiveNote={setAvtiveNote}/>
-    <Note isOpen={isOpen} activeNote={getActiveNote()} onDeleteNote={onDeleteNote} onUpdateNote={onUpdateNote}/>
+    <Note isOpen={isOpen} activeNote={getActiveNote()} onDeleteNote={onDeleteNote} onUpdateNote={onUpdateNote} notes={notes}/>
    
     </>
   )

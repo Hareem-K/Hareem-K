@@ -1,17 +1,20 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 
 
-function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
+function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
     const noteStyle = {
         marginLeft: isOpen ? 350 : 0
     }
 
+    const { noteTitle } = useParams();
+
     const [editing, setEditing] = useState(false);
     const [noteContent, setNoteContent] = useState(activeNote?.body || "");
-    const [currentDate, setCurrentDate] = useState(new Date());
+    //const [currentDate, setCurrentDate] = useState(new Date());
+    const [lastModified, setLastModified] = useState(activeNote?.lastModified || new Date());
     const datePickerRef = useRef(null);
     const navigate = useNavigate();
 
@@ -30,7 +33,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
     const handleEdit = () => {
         setEditing(true);
         datePickerRef.current.disabled = false;
-        navigate(`/notes/${activeNote.title}/edit`)
+        navigate(`/notes/${notes.indexOf(activeNote) + 1}/edit`)
     };
 
     const handleSaveNote = () => {
@@ -39,7 +42,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
         setEditing(false);
         datePickerRef.current.disabled = true;
         localStorage.setItem('noteContent', activeNote.body);
-        navigate(`/notes/${activeNote.title}`)
+        navigate(`/notes/${notes.indexOf(activeNote) + 1}`)
     };
 
 
@@ -60,6 +63,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
         minute: "numeric",
     }; 
 
+    /*
     const formatDate = (when) => {
         const formatted = new Date(when).toLocaleString("en-US", options);
         if (formatted === "Invalid Date") {
@@ -67,6 +71,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
         }
         return formatted;
     };
+    */
 
     //message if no current note selected
     if(!activeNote) return <div className="no-active-note">Select a note, or create a new one.</div>;
@@ -81,12 +86,12 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
                 }} disabled={!editing} autoFocus={!editing}/>
                 <p className="date"></p>
 
-
+                
                 <input
                     type="datetime-local"
                     className="datePicker"
                     style={{
-                        width: "150px",
+                        width: "200px",
                         height: "9px",
                         fontSize: "14px",
                         marginTop: "-30px",
@@ -95,12 +100,11 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
                     }}
                     disabled={!editing}
                     ref={datePickerRef}
-                    value={formatDate(
-                        editing ? currentDate.getTime() : activeNote.lastModified
-                    )}
+                    value={new Date(lastModified).toISOString().substr(0, 16)}
                     onChange={(e) => {
                         if (editing) {
-                        setCurrentDate(new Date(e.target.value));
+                        setLastModified(new Date(e.target.value));
+                        (new Date(e.target.value));
                         onEditField("lastModified", new Date(e.target.value).getTime());
                         }
                     }}
@@ -122,7 +126,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
                     ) : (
                         <div
                             className="markdown-preview"
-                            style={{ marginLeft: -11 }}
+                            style={{ marginLeft: -11, marginTop: 10}}
                             dangerouslySetInnerHTML={{__html: noteContent }}
                         ></div>
                     )}
