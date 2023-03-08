@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import uuid from "react-uuid";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
@@ -11,6 +12,8 @@ function App() {
 
   const [notes, setNotes] = useState(localStorage.notes ? JSON.parse(localStorage.notes) : []);
   const [activeNote, setAvtiveNote] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     localStorage.setItem("notes", JSON.stringify(notes));
@@ -30,7 +33,29 @@ function App() {
 
   const onDeleteNote = (idToDelete) => {
     if (window.confirm("Are you sure?")) {
-      setNotes(notes.filter((note) => note.id !== idToDelete));
+      const newNoteList = notes.filter((note) => note.id !== idToDelete);
+      localStorage.removeItem(activeNote.id);
+      setNotes(newNoteList);
+
+      const currentIndex = getActiveNote.findIndex((note) => note.id === idToDelete);
+      const nextNoteIndex = currentIndex === 0 ? 1 : currentIndex - 1;
+      let nextNoteId;
+      if (newNoteList.length > 0) {
+        if (nextNoteIndex === newNoteList.length) {
+          nextNoteId = newNoteList[0].id;
+        }
+        else {
+          nextNoteId = newNoteList[0].id;
+        }
+      }
+
+      else {
+        navigate(`/notes`);
+        return;
+      }
+
+      setAvtiveNote(nextNoteId);
+      navigate(`/notes/${notes.indexOf(activeNote) + 1}`);
     }
   };
 
@@ -52,6 +77,7 @@ function App() {
     //returns active note for main section to show each active note when selected
     return notes.find((note) => note.id === activeNote);
   }
+
 
   return(
     <>

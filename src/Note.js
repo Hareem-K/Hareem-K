@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -9,15 +9,12 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
         marginLeft: isOpen ? 350 : 0
     }
 
-    const { noteTitle } = useParams();
-
     const [editing, setEditing] = useState(false);
     const [noteContent, setNoteContent] = useState(activeNote?.body || "");
-    //const [currentDate, setCurrentDate] = useState(new Date());
     const [lastModified, setLastModified] = useState(activeNote?.lastModified || new Date());
     const datePickerRef = useRef(null);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         // Set note content to active note's body
         setNoteContent(activeNote?.body || "");
@@ -55,23 +52,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
         });
         
     };
-    const options = {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-        hour: "numeric",
-        minute: "numeric",
-    }; 
 
-    /*
-    const formatDate = (when) => {
-        const formatted = new Date(when).toLocaleString("en-US", options);
-        if (formatted === "Invalid Date") {
-          return "";
-        }
-        return formatted;
-    };
-    */
 
     //message if no current note selected
     if(!activeNote) return <div className="no-active-note">Select a note, or create a new one.</div>;
@@ -100,14 +81,15 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
                     }}
                     disabled={!editing}
                     ref={datePickerRef}
-                    value={new Date(lastModified).toISOString().substr(0, 16)}
+                    value={new Date(lastModified - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 16)}
                     onChange={(e) => {
                         if (editing) {
-                        setLastModified(new Date(e.target.value));
-                        (new Date(e.target.value));
-                        onEditField("lastModified", new Date(e.target.value).getTime());
+                            const selectedDate = new Date(e.target.value);
+                            setLastModified(selectedDate.getTime());
+                            onEditField("lastModified", selectedDate.getTime());
                         }
                     }}
+                    
                 />
 
 
