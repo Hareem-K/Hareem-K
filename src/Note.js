@@ -1,8 +1,8 @@
-//import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState, useRef, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-//import DOMPurify from 'dompurify';
+
 
 function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
     const noteStyle = {
@@ -13,6 +13,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
     const [noteContent, setNoteContent] = useState(activeNote?.body || "");
     const [currentDate, setCurrentDate] = useState(new Date());
     const datePickerRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         // Set note content to active note's body
@@ -29,6 +30,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
     const handleEdit = () => {
         setEditing(true);
         datePickerRef.current.disabled = false;
+        navigate(`/notes/${activeNote.title}/edit`)
     };
 
     const handleSaveNote = () => {
@@ -37,6 +39,7 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote}) {
         setEditing(false);
         datePickerRef.current.disabled = true;
         localStorage.setItem('noteContent', activeNote.body);
+        navigate(`/notes/${activeNote.title}`)
     };
 
 
