@@ -34,8 +34,13 @@ function Sidebar({isOpen, toggle, notes, onAddNote, activeNote ,setAvtiveNote}) 
                             } )}
                             </small>
 
-                            <div className="preview">{note.body && note.body.substr(0, 20) + "..."}</div>
+                            <div
+                                className="preview"
+                                dangerouslySetInnerHTML={{ __html: note.body && note.body.substr(0, 20) + "..." }}
+                            ></div>
+
                         </div>
+                        
                     ))}
 
                     
