@@ -77,7 +77,8 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
                         fontSize: "14px",
                         marginTop: "-30px",
                         border: "none",
-                        marginLeft: "-21px"
+                        marginLeft: "-21px",
+                        overflowY: "hidden",
                     }}
                     disabled={!editing}
                     ref={datePickerRef}
