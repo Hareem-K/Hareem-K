@@ -14,10 +14,11 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
     const [lastModified, setLastModified] = useState(activeNote?.lastModified || new Date());
     const datePickerRef = useRef(null);
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         // Set note content to active note's body
         setNoteContent(activeNote?.body || "");
+        setLastModified(activeNote?.lastModified || new Date());
     }, [activeNote]);
 
     
@@ -34,26 +35,26 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
     };
 
     const handleSaveNote = () => {
-        //const strippedContent = noteContent.replace(/<[^>]+>/g, ''); //remove html tags
         onEditField("body", noteContent);
         setEditing(false);
         datePickerRef.current.disabled = true;
         localStorage.setItem('noteContent', activeNote.body);
+        localStorage.setItem(`note_${activeNote.id}_date`, lastModified);
         navigate(`/notes/${notes.indexOf(activeNote) + 1}`)
     };
 
 
     //brings most recently edited note to the top of sidebar
     const onEditField = (key, value) => {
+        const newLastModified = key === "lastModified" ? value : lastModified;
         onUpdateNote({
-            ...activeNote,
-            [key]: value,
-            lastModified: Date.now(),
+          ...activeNote,
+          [key]: value,
+          lastModified: newLastModified,
         });
-        
-    };
-
-
+        setLastModified(newLastModified);
+      };
+      
     //message if no current note selected
     if(!activeNote) return <div className="no-active-note">Select a note, or create a new one.</div>;
 
@@ -82,15 +83,17 @@ function Note({isOpen, activeNote, onDeleteNote, onUpdateNote, notes}) {
                     }}
                     disabled={!editing}
                     ref={datePickerRef}
-                    value={new Date(lastModified - new Date().getTimezoneOffset() * 60000).toISOString().substr(0, 16)}
+                    value={new Date(lastModified - new Date().getTimezoneOffset() * 60000)
+                        .toISOString()
+                        .substr(0, 16)}
                     onChange={(e) => {
                         if (editing) {
                             const selectedDate = new Date(e.target.value);
-                            setLastModified(selectedDate.getTime());
                             onEditField("lastModified", selectedDate.getTime());
                         }
                     }}
-                    
+    
+
                 />
 
 

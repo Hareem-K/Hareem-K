@@ -28,6 +28,7 @@ function App() {
     };
 
     setNotes([newNote, ...notes]);
+    setAvtiveNote(newNote.id);
   }
 
 
@@ -60,17 +61,19 @@ function App() {
   };
 
   const onUpdateNote = (updatedNote) => {
-    const updatedNotesArray = notes.map((note) => {
-      if(note.id === activeNote) {
-        return updatedNote;
+    const updatedNotes = notes.map((note) => {
+      if (note.id === updatedNote.id) {
+        return {
+          ...note,
+          ...updatedNote,
+        };
+      } else {
+        return note;
       }
-
-      return note;
-
-    })
-
-    setNotes(updatedNotesArray);
-  }
+    });
+    setNotes(updatedNotes);
+  };
+  
 
 
   const getActiveNote = () => {
